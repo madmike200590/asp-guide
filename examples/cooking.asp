@@ -13,7 +13,7 @@ ingredient_for(ham, sandwich).
 ingredient_for(cheese, sandwich).
 
 % Inference rules to determine what can be cooked
-missing_ingredient(D, I) :- ingredient_for(D, I), not available(I).
+missing_ingredient(D, I) :- ingredient_for(I, D), not available(I).
 ingredients_missing_for(D) :- missing_ingredient(D, _).
 
 can_cook(D) :- dish(D), not ingredients_missing_for(D).
