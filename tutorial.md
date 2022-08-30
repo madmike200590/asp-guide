@@ -34,7 +34,6 @@ ingredients_missing_for(pizza)
 missing_ingredient(pizza, olives)
 missing_ingredient(pizza, tomato_sauce) }
 SATISFIABLE
-
 ```
 
 ### Rules - the bones of an ASP program
@@ -43,5 +42,30 @@ ASP code is structured around **rules** - for example, `missing_ingredient(D, I)
 For example, the rule `vehicle(X) :- car(X).` expresses that, if `X` is a car, then `X` is also a vehicle. Rule bodies can refer to more than one propositions - consider the rule `motorcycle(X) :- vehicle(X), motorized(X), has_two_wheels(X).` which tells us that motorized vehicles with two wheels are motorcycles. Expressions of form `<predicate>(<args>)` are called **atoms**. Atoms can also be  **negated**, i.e. prefixed with `not` - in the context of a rule body, both atoms and negated atoms are called **literals**. We have an example of this in the cooking program, see the rule `can_cook(D) :- dish(D), not ingredients_missing_for(D).` which tells us that we can cook a dish if we don't miss any required ingredients.
 
 **Facts** are rules with an empty body. They express things that are _always true_, e.g. `wet(water).`.
+
+### Choices and multiple answer sets
+
+ASP is often used for computationally complex problems from domains like scheduling and optimization. These problems have in common that it is hard (or even effectively impossible) to formulate an efficient algorithm that calculates optimal solutions. The "ASP way" to handle this is the **guess-and-check** design pattern - we have one program part that specifies how a solution candidate looks (guess) and one that evaluates whether a solution candidate is in fact a valid solution (check).
+
+We'll demonstrate this pattern using the **graph coloring** problem as an example. Given a graph that is specified through its vertices and edges, we want to know how whether there is a way to color all vertices in the graph so that no two adjacent vertices have the same color. The most common variant is graph 3-coloring where we want to use 3 colors, e.g. red, green and blue.
+
+We encode our input graph as ASP facts as follows:
+```
+vertex(a).
+vertex(b).
+vertex(c).
+edge(a, b).
+edge(b, c).
+edge(c, a).
+```
+The above facts describe a triangular graph where every vertex is connected to two others. We also create a helper rule to express that our graph is undirected, i.e. an edge from `a` to `c` is synonymous for an edge from `c` to `a`.
+```
+% Edges are undirected
+edge(Y, X) :- edge(X, Y).
+```
+
+#### Guessing - Generating a solution space
+
+
 
 
