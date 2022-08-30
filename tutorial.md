@@ -96,4 +96,25 @@ The constraints we need are:
 :- vertex(V1), vertex(V2), edge(V1, V2), green(V1), green(V2).
 :- vertex(V1), vertex(V2), edge(V1, V2), blue(V1), blue(V2).
 ```
+Adding these constraints to our program from above, we get the full [3-coloring](examples/3-coloring.asp) program:
+```
+{% include_relative examples/3-coloring.asp %}
+```
+Evaluating the program yields the six valid solutions for our graph:
+```
+$ alpha-solver -i 3-coloring.asp -f red -f green -f blue
+Answer set 1:
+{ blue(b), green(a), red(c) }
+Answer set 2:
+{ blue(a), green(b), red(c) }
+Answer set 3:
+{ blue(a), green(c), red(b) }
+Answer set 4:
+{ blue(b), green(c), red(a) }
+Answer set 5:
+{ blue(c), green(a), red(b) }
+Answer set 6:
+{ blue(c), green(b), red(a) }
+SATISFIABLE
+```
 
