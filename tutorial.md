@@ -66,6 +66,25 @@ edge(Y, X) :- edge(X, Y).
 
 #### Guessing - Generating a solution space
 
+In the guessing part of our graph coloring implementation, we specify three rules that basically express that every vertex can have every color.
+```
+red(V) :- vertex(V), not green(V), not blue(V).
+green(V) :- vertex(V), not red(V), not blue(V).
+blue(V) :- vertex(V), not red(V), not green(V).
+```
+It's important to note that only one out of the three rules from the example can fire: As soon as any rule fires, it "blocks" the other two. However, there is no way to decide which of the three rules that can fire is the single correct one. In fact, any of the three is fine, we just want our vertex to have a color, but have no particular preferences on which color is assigned to an individual vertex. In cases such as these, where there can be no single correct answer, ASP solvers generate _all_ correct solutions, i.e. one answer set per coloring. A call to alpha and some answer sets for the graph coloring program are listed below (Alpha's `-f` option allows filtering for specific predicate names). You can find the full code [here](examples/3-coloring-guess.asp).
+```
+$ alpha-solver -i 3-coloring-guess.asp -filter red -filter green -filter blue
+Answer set 1:
+{ blue(b), green(a), red(c) }
+Answer set 2:
+{ green(a), green(b), red(c) }
+Answer set 3:
+{ green(a), red(b), red(c) }
+Answer set 4:
+{ blue(a), blue(b), red(c) }
+...
+```
 
 
 
