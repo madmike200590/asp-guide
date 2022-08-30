@@ -2,7 +2,7 @@
 
 ## The Basics
 
-This chapter will cover the basics of understanding and writing ASP programs. You'll learn about the basic building blocks of a program, how to put them together, and what the results mean. Let's start with a small example dealing where we write a simple knowledge base that helps us decide what we can cook with a given set of stores.
+This chapter will cover the basics of understanding and writing ASP programs. You'll learn about the basic building blocks of a program, how to put them together, and what the results mean. Let's start with a small example where we write a simple knowledge base that helps us decide what we can cook with a given set of stores.
 
 Consider the program [cooking.asp](examples/cooking.asp):
 ```
