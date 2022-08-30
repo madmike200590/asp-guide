@@ -1,3 +1,5 @@
+# A coder's guide to answer set programming
+
 ## What is Answer Set Programming?
 
 Answer Set Programming (ASP) is a programming language mainly used for modelling in artificial intelligence applications. It lends itself to complex search and optimization problems from domains such as planning, scheduling, etc. ASP is a declarative language, meaning instead of writing a "step by step" list (i.e. an algorithm) for the computer on how to calculate something, we specify just _how a valid solution looks_ by means of logic-based rules. The software needed to run ASP code (i.e. the interpreter) is called an _ASP Solver_.
