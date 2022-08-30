@@ -85,6 +85,15 @@ Answer set 4:
 { blue(a), blue(b), red(c) }
 ...
 ```
+With the current state of the program, we get _all_ possible colorings. Now, to filter out those not representing valid 3-colorings, we write a so-called **check-part** to our program.
 
+#### Checking - Filtering solutions
 
+In order to extend our program from the previous section to a valid 3-coloring implementation, we need to exclude all answer sets where neighboring vertices have the same color. To that end, we introduce the concept of a **constraint**: a constraint is a rule _without head_. It expresses that any solution candidate in which the constraint body holds true can not be a valid answer set.
+The constraints we need are:
+```
+:- vertex(V1), vertex(V2), edge(V1, V2), red(V1), red(V2).
+:- vertex(V1), vertex(V2), edge(V1, V2), green(V1), green(V2).
+:- vertex(V1), vertex(V2), edge(V1, V2), blue(V1), blue(V2).
+```
 
